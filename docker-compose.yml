@@ -1,0 +1,25 @@
+version: '3'
+services:
+  api:
+    image: youtip/api:v1
+    ports:
+      - "8080:8080"
+    networks:
+      - youtip_demo_net
+    volumes:
+      - type: volume
+        source: dbdata
+        target: /data
+
+  nginx:
+    image: youtip/nginx:v1
+    ports:
+      - "80:80"
+    networks:
+      - youtip_demo_net
+
+  networks:
+    youtip_demo_net:
+
+  volumes:
+    dbdata:
